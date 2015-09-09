@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:body>
+	<ui:composition template="template/common/commonLayout.xhtml">
+
+
+		<ui:define name="content">
+
+
+
+			<h:form id="custForm">
+				<p:dataTable id="customerTable" var="customer"
+					value="#{customerFilter.customers}" style="margin-bottom:40px"
+					widgetVar="customersTable" editable="true" editMode="cell">
+
+					<p:column headerText="First Name" sortBy="#{customer.firstName}"
+						filterBy="#{customer.firstName}">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{customer.firstName}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText id="modelInput" value="#{customer.firstName}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+
+
+				</p:dataTable>
+
+				<p:commandButton value="create" icon="ui-icon-extlink"
+					oncomplete="PF('customer').show()"
+					actionListener="#{customerFilter.createCustomerAction}" />
+
+
+				<p:dialog header="Create Customer" widgetVar="customer" modal="true"
+					showEffect="fade" hideEffect="fade" resizable="false" width="500">
+					<p:outputPanel id="multiCarDetail" style="text-align:center;">
+
+						<h:inputText value="#{customerFilter.createCustomer.firstName}" />
+
+						<p:commandButton value="save" oncomplete="PF('customer').hide()"
+							actionListener="#{customerFilter.save}" update="customerTable" />
+
+					</p:outputPanel>
+				</p:dialog>
+
+
+
+
+
+			</h:form>
+
+
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

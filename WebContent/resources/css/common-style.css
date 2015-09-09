@@ -1,0 +1,26 @@
+#page{
+	width: 100%;
+	
+}
+
+#header{
+	width: 100%;
+}
+
+#content{
+	width: 100%;
+	height:auto;
+	margin-right:2px;
+	margin-bottom:2px;
+	
+}
+
+#footer{
+	width: 100%;
+	height:auto;
+	
+}
+
+body {
+    background-color: #000000;
+} 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+	    <ui:composition>
+	
+	    
+	   
+
+
+		<p:graphicImage url="images/logo.png"/>
+		
+		
+				<p:menubar id = "menuBar">
+				<p:menuitem value="Videos" url="videos.jsf" />
+				<p:menuitem value="Login" url="login.jsf" />
+				<p:submenu label="Employee's" icon="ui-icon-document" rendered="#{loginController.loggedIn}">
+					 <p:menuitem value="Customers" url="customer.jsf" />
+					 <p:menuitem value="Videos" url="#" />
+				</p:submenu>
+				
+				
+				
+				
+				
+				</p:menubar>
+	    </ui:composition>
+    </body>
+</html>
+
+
