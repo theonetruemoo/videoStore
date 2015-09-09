@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:body>
+	<ui:composition template="template/common/commonLayout.xhtml">
+
+
+		<ui:define name="content">
+
+
+
+			<h:form>
+				<p:dataTable id="videoTable" var="video" value="#{videoController.videos}"
+					style="margin-bottom:40px" editable="true" editMode="cell">
+
+					<p:column headerText="Id" sortBy="#{video.id}"
+						filterBy="#{video.id}">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{video.id}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{video.id}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Name" sortBy="#{video.name}"
+						filterBy="#{video.name}">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{video.name}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{video.name}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Genre" sortBy="#{video.genreId}"
+						filterBy="#{video.genreId}">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{video.genreId}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{video.genreId}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Minutes" sortBy="#{video.minutes}"
+						filterBy="#{video.minutes}">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{video.minutes}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{video.minutes}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Actors" sortBy="#{video.actorsId}"
+						filterBy="#{video.actorsId}">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{video.actorsId}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{video.actorsId}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Release Date" sortBy="#{video.releaseDate}"
+						filterBy="#{video.releaseDate}">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{video.releaseDate}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{video.releaseDate}" style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+
+
+				</p:dataTable>
+
+				<p:commandButton value="create" icon="ui-icon-extlink"
+					oncomplete="PF('video').show()" />
+
+
+				<p:dialog header="Create Video" widgetVar="video" modal="true"
+					showEffect="fade" hideEffect="fade" resizable="false" width="500">
+					<p:outputPanel id="createVideo" style="text-align:center;">
+
+						<h:inputText
+							value="#{videoController.createVideo.name}" />
+
+						<p:commandButton value="save" oncomplete="PF('video').hide()"
+							actionListener="#{videoController.save}"
+							update="videoTable" />
+
+					</p:outputPanel>
+				</p:dialog>
+
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
