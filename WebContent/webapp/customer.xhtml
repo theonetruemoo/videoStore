@@ -18,7 +18,7 @@
 
 			<h:form id="custForm">
 				<p:dataTable id="customerTable" var="customer"
-					value="#{customerFilter.customers}" style="margin-bottom:40px"
+					value="#{customerController.customers}" style="margin-bottom:40px"
 					widgetVar="customersTable" editable="true" editMode="cell">
 
 					<p:column headerText="First Name" sortBy="#{customer.firstName}"
@@ -34,23 +34,59 @@
 						</p:cellEditor>
 					</p:column>
 
+					<p:column style="width:32px;text-align: center">
+						<p:commandButton oncomplete="PF('videosCustomer').show()"
+							icon="ui-icon-play" title="View" value="#{customer}"
+							target="#{movieCheckoutController.selectedCustomer}">
+
+						</p:commandButton>
+					</p:column>
+
 
 
 				</p:dataTable>
 
 				<p:commandButton value="create" icon="ui-icon-extlink"
-					oncomplete="PF('customer').show()"
-					actionListener="#{customerFilter.createCustomerAction}" />
+					oncomplete="PF('customer').show()" />
 
 
 				<p:dialog header="Create Customer" widgetVar="customer" modal="true"
 					showEffect="fade" hideEffect="fade" resizable="false" width="500">
-					<p:outputPanel id="multiCarDetail" style="text-align:center;">
+					<p:outputPanel id="createCustomer" style="text-align:center;">
 
-						<h:inputText value="#{customerFilter.createCustomer.firstName}" />
+						<h:inputText
+							value="#{customerController.createCustomer.firstName}" />
 
 						<p:commandButton value="save" oncomplete="PF('customer').hide()"
-							actionListener="#{customerFilter.save}" update="customerTable" />
+							actionListener="#{customerController.save}"
+							update="customerTable" />
+
+					</p:outputPanel>
+				</p:dialog>
+
+				<p:dialog header="Videos" widgetVar="videosCustomer" modal="true"
+					showEffect="fade" hideEffect="fade" resizable="false" width="500">
+
+
+
+					<p:dataTable id="Videos" var="checkedOut"
+						value="#{movieCheckoutController.moviesCheckedOut}">
+
+						<p:column headerText="Id">
+							<h:outputText value="#{checkedOut.videoId}" />
+						</p:column>
+
+
+					</p:dataTable>
+
+
+
+					<p:outputPanel id="checkVideos" style="text-align:center;">
+
+						<h:inputText
+							value="#{customerController.createCustomer.firstName}" />
+
+						<p:commandButton value="addVideo" />
 
 					</p:outputPanel>
 				</p:dialog>

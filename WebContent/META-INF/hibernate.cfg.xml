@@ -19,5 +19,6 @@
 <mapping class="za.co.mooInc.beans.Genre" />
 <mapping class="za.co.mooInc.beans.Video" />
 <mapping class="za.co.mooInc.beans.VideoActor" />
+<mapping class="za.co.mooInc.beans.MovieCheckOut" />
 </session-factory>
 </hibernate-configuration>

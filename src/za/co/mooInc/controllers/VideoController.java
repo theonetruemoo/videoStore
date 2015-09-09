@@ -1,34 +1,72 @@
 package za.co.mooInc.controllers;
 
-import java.sql.Date;
-import java.util.ArrayList;
 
+	
+
+	 
+	import java.io.Serializable;
+import java.util.List;
+import java.util.Locale;
+
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
 
+import za.co.mooInc.beans.Customer;
 import za.co.mooInc.beans.Video;
 
-@ManagedBean(name = "videoController")
-public class VideoController {
-	
-	
-	private ArrayList<Video> videos;
+	 
 
-	public ArrayList<Video> getVideos() {
-		
-		if(videos == null){
-			for(int a = 0;a<10; a++){
-				Video avid = new Video(a, "name"+a, a,(long) a*10 ,a, new Date(1213214L));
-				videos.add(avid);
-			}
-		}
-		return videos;
+@ManagedBean(name="videoController")
+@ViewScoped
+public class VideoController implements Serializable {
+     
+
+	private List<Video> videos;
+
+     
+
+	@ManagedProperty("#{video}")
+	private Video videoService;
+	private Video createVideo;
+ 
+    @PostConstruct
+    public void init() {
+    	createVideo = new Video();
+    	videos = videoService.createVideos();
+
+    }
+    
+    
+    public void save(ActionEvent actionEvent){
+    	videos.add(createVideo);
+    	
+	}
+	
+	
+
+ 
+    public List<Video> getvideos() {
+        return videos;
+    }
+ 
+
+ 
+    public void setVideoService(Video videoService) {
+        this.videoService = videoService;
+    }
+
+	public Video getCreateVideo() {
+		return createVideo;
 	}
 
-	public void setVideos(ArrayList<Video> videos) {
-		this.videos = videos;
+	public void setCreateVideo(Video createVideo) {
+		this.createVideo = createVideo;
 	}
-	
-	
-	
-
+    
+    
+    
 }
+

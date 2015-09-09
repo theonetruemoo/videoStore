@@ -17,7 +17,7 @@
     		
     		
 	<h:form>
-    <p:dataTable var="video" value="#{videoFilter.videos}" style="margin-bottom:40px">
+    <p:dataTable  var="video" value="#{videoController.videos}" style="margin-bottom:40px">
         <f:facet name="header">
             Availible Titles
         </f:facet>
@@ -28,6 +28,18 @@
         <p:column headerText="Name" sortBy="#{video.name}" filterBy="#{video.name}">>
             <h:outputText value="#{video.name}" />
         </p:column>
+        
+        <p:column headerText="Genre" sortBy="#{video.genreId}" filterBy="#{video.genreId}">>
+            <h:outputText value="#{video.genreId}" />
+        </p:column>
+        
+        <p:column headerText="Minutes" sortBy="#{video.minutes}" filterBy="#{video.minutes}">>
+            <h:outputText value="#{video.minutes}" />
+        </p:column>
+        
+        <p:column headerText="Actors" sortBy="#{video.actorsId}" filterBy="#{video.actorsId}">>
+            <h:outputText value="#{video.actorsId}" />
+        </p:column>
  
         <p:column headerText="Release Date" sortBy="#{video.releaseDate}" filterBy="#{video.releaseDate}">>
             <h:outputText value="#{video.releaseDate}" />
@@ -35,6 +47,8 @@
  
        
     </p:dataTable>
+    
+   
  
  </h:form>
     

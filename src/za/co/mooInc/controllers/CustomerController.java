@@ -19,9 +19,9 @@ import za.co.mooInc.beans.Video;
 
 	 
 
-@ManagedBean(name="customerFilter")
+@ManagedBean(name="customerController")
 @ViewScoped
-public class CustomerFilters implements Serializable {
+public class CustomerController implements Serializable {
      
 
 	private List<Customer> customers;
@@ -38,6 +38,14 @@ public class CustomerFilters implements Serializable {
     	createCustomer = new Customer();
 
     }
+    
+    public void save(ActionEvent actionEvent){
+		customers.add(createCustomer);
+		
+	}
+	
+
+
 
 	public List<Customer> getCustomers() {
 		return customers;
@@ -55,14 +63,7 @@ public class CustomerFilters implements Serializable {
 		this.customerService = customerService;
 	}
 	
-	public void save(ActionEvent actionEvent){
-		customers.add(createCustomer);
-	}
 	
-	public void createCustomerAction(ActionEvent actionEvent){
-		 createCustomer = new Customer();
-	}
-
 	public Customer getCreateCustomer() {
 		return createCustomer;
 	}
