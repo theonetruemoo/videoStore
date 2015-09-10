@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 
@@ -33,7 +34,7 @@ public class MovieCheckOut {
 		 return aList;
 	}
 	
-	
+	@Id
 	public int getId() {
 		return id;
 	}

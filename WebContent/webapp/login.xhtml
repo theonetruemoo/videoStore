@@ -19,10 +19,10 @@
 			<p:panel id="basic" header="Home" style="margin-bottom:20px">
 				<h:panelGrid columns="2" cellpadding="10">
 					<h:outputText value="Username:" />
-					<p:inputText value="#{loginController.username}" />
+					<p:inputText value="#{loginController.user.username}" />
 
 					<h:outputText value="Password:" />
-					<p:password value="#{loginController.password}" />
+					<p:password value="#{loginController.user.password}" />
 					
 					</h:panelGrid>
 					

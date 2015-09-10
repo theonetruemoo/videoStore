@@ -28,19 +28,55 @@
 								<h:outputText value="#{customer.firstName}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText id="modelInput" value="#{customer.firstName}"
+								<p:inputText  value="#{customer.firstName}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
-
-					<p:column style="width:32px;text-align: center">
-						<p:commandButton oncomplete="PF('videosCustomer').show()"
-							icon="ui-icon-play" title="View" value="#{customer}"
-							target="#{movieCheckoutController.selectedCustomer}">
-
-						</p:commandButton>
+					
+					<p:column headerText="Surname" sortBy="#{customer.surname}"
+						filterBy="#{customer.surname}">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{customer.surname}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText  value="#{customer.surname}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
 					</p:column>
+					
+					
+					<p:column headerText="Contact Number" sortBy="#{customer.contactNumber}"
+						filterBy="#{customer.firstName}">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{customer.contactNumber}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText  value="#{customer.contactNumber}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					
+					
+					<p:column headerText="Id Number" sortBy="#{customer.idNumber}"
+						filterBy="#{customer.idNumber}">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{customer.idNumber}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText  value="#{customer.idNumber}"
+									style="width:100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					
+
+					
 
 
 
@@ -48,14 +84,40 @@
 
 				<p:commandButton value="create" icon="ui-icon-extlink"
 					oncomplete="PF('customer').show()" />
+					
+					<p:commandButton value="Update" 
+							actionListener="#{customerController.update}"
+							update="customerTable" />
 
 
 				<p:dialog header="Create Customer" widgetVar="customer" modal="true"
 					showEffect="fade" hideEffect="fade" resizable="false" width="500">
 					<p:outputPanel id="createCustomer" style="text-align:center;">
 
-						<h:inputText
-							value="#{customerController.createCustomer.firstName}" />
+
+						<h:panelGrid columns="2" cellpadding="10">
+
+
+
+
+							<h:outputText value="First Name" />
+							<h:inputText
+								value="#{customerController.createCustomer.firstName}" />
+
+							<h:outputText value="Surname" />
+							<h:inputText value="#{customerController.createCustomer.surname}" />
+
+							<h:outputText value="Contact Number" />
+							<h:inputText
+								value="#{customerController.createCustomer.contactNumber}" />
+
+							<h:outputText value="Id Number" />
+							<h:inputText
+								value="#{customerController.createCustomer.idNumber}" />
+
+						</h:panelGrid>
+
+
 
 						<p:commandButton value="save" oncomplete="PF('customer').hide()"
 							actionListener="#{customerController.save}"
@@ -64,32 +126,7 @@
 					</p:outputPanel>
 				</p:dialog>
 
-				<p:dialog header="Videos" widgetVar="videosCustomer" modal="true"
-					showEffect="fade" hideEffect="fade" resizable="false" width="500">
-
-
-
-					<p:dataTable id="Videos" var="checkedOut"
-						value="#{movieCheckoutController.moviesCheckedOut}">
-
-						<p:column headerText="Id">
-							<h:outputText value="#{checkedOut.videoId}" />
-						</p:column>
-
-
-					</p:dataTable>
-
-
-
-					<p:outputPanel id="checkVideos" style="text-align:center;">
-
-						<h:inputText
-							value="#{customerController.createCustomer.firstName}" />
-
-						<p:commandButton value="addVideo" />
-
-					</p:outputPanel>
-				</p:dialog>
+				
 
 
 

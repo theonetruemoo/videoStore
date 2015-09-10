@@ -18,7 +18,9 @@ public class VideoItem {
 	 private Date createDate;
 	 
 
-	 
+	 public VideoItem(){
+		 
+	 }
 	 
 	public VideoItem(int id, String serialNumber, int videoId, Date createDate) {
 		super();

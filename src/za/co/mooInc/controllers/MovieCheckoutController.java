@@ -5,18 +5,27 @@ package za.co.mooInc.controllers;
 
 	 
 	import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
+
+
+
+
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import javax.faces.event.ActionEvent;
+
+
+
+
+
 
 import za.co.mooInc.beans.Customer;
 import za.co.mooInc.beans.MovieCheckOut;
 import za.co.mooInc.beans.Video;
+
 
 	 
 
@@ -26,6 +35,7 @@ public class MovieCheckoutController implements Serializable {
      
 
 	private List<MovieCheckOut> checkedOutMovies;
+	private Customer selectedCustomer;
 	
 
      
@@ -35,9 +45,17 @@ public class MovieCheckoutController implements Serializable {
  
     @PostConstruct
     public void init() {
-    	checkedOutMovies = checkOutService.populateMovies();
+    	//checkedOutMovies = checkOutService.populateMovies();
     	
 
+    }
+    
+    public List<Video> getCheckedOutVideos(){
+    	List<Video> checkedOut = new ArrayList<Video>();
+    	if(selectedCustomer!=null){
+    	System.out.println("cust Id"+selectedCustomer.getId());
+    	}
+    	return checkedOut;
     }
 
 	public List<MovieCheckOut> getCheckedOutMovies() {
@@ -55,7 +73,17 @@ public class MovieCheckoutController implements Serializable {
 	public void setCheckOutService(MovieCheckOut checkOutService) {
 		this.checkOutService = checkOutService;
 	}
+
+	public Customer getSelectedCustomer() {
+		return selectedCustomer;
+	}
+
+	public void setSelectedCustomer(Customer selectedCustomer) {
+		this.selectedCustomer = selectedCustomer;
+	}
     
+	
+	
    
 
 

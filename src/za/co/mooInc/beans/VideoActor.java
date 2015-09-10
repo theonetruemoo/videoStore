@@ -1,6 +1,7 @@
 package za.co.mooInc.beans;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 
@@ -14,7 +15,7 @@ public class VideoActor {
 	 private int videoId;
 	 private int actorId;
 	 
-	 
+	 @Id 
 	public int getVideoId() {
 		return videoId;
 	}

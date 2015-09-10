@@ -1,12 +1,14 @@
 package za.co.mooInc.beans;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 
@@ -52,6 +54,7 @@ public class Video implements Serializable {
 		this.actorsId = actorsId;
 		this.releaseDate = releaseDate;
 	}
+	@Id
 	public int getId() {
 		return id;
 	}
@@ -64,6 +67,7 @@ public class Video implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	@Column(name="genre_id")
 	public int getGenreId() {
 		return genreId;
 	}
@@ -76,12 +80,14 @@ public class Video implements Serializable {
 	public void setMinutes(long minutes) {
 		this.minutes = minutes;
 	}
+	@Column(name="actors_id") 
 	public int getActorsId() {
 		return actorsId;
 	}
 	public void setActorsId(int actorsId) {
 		this.actorsId = actorsId;
 	}
+	@Column(name="release_date")
 	public Date getReleaseDate() {
 		return releaseDate;
 	}

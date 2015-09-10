@@ -17,8 +17,9 @@
 
 
 			<h:form>
-				<p:dataTable id="videoTable" var="video" value="#{videoController.videos}"
-					style="margin-bottom:40px" editable="true" editMode="cell">
+				<p:dataTable id="videoTable" var="video"
+					value="#{videoController.videos}" style="margin-bottom:40px"
+					editable="true" editMode="cell">
 
 					<p:column headerText="Id" sortBy="#{video.id}"
 						filterBy="#{video.id}">
@@ -51,8 +52,14 @@
 								<h:outputText value="#{video.genreId}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{video.genreId}" style="width:100%" />
+								
+								
+								<h:selectOneMenu value="#{video.genreId}" style="width:100%">
+                       <f:selectItems value="#{genreController.allGenreAsSelectItems}"  />
+                  				 </h:selectOneMenu>
 							</f:facet>
+							
+							
 						</p:cellEditor>
 					</p:column>
 
@@ -75,7 +82,14 @@
 								<h:outputText value="#{video.actorsId}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{video.actorsId}" style="width:100%" />
+								<p:selectOneMenu id="actorsInput"
+								value="#{video.actorsId}"
+								style="width:150px">
+
+								<f:selectItem itemLabel="Select Actor" itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems value="#{actorController.allActorsSelectItem}" />
+							</p:selectOneMenu>
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -97,19 +111,65 @@
 				</p:dataTable>
 
 				<p:commandButton value="create" icon="ui-icon-extlink"
-					oncomplete="PF('video').show()" />
+					oncomplete="PF('videoModal').show()" />
+
+				<p:commandButton value="Update"
+					actionListener="#{videoController.update}" update="videoTable" />
 
 
-				<p:dialog header="Create Video" widgetVar="video" modal="true"
+
+
+
+
+
+
+				<p:dialog header="Create Video" widgetVar="videoModal" modal="true"
 					showEffect="fade" hideEffect="fade" resizable="false" width="500">
 					<p:outputPanel id="createVideo" style="text-align:center;">
 
-						<h:inputText
-							value="#{videoController.createVideo.name}" />
 
-						<p:commandButton value="save" oncomplete="PF('video').hide()"
-							actionListener="#{videoController.save}"
-							update="videoTable" />
+						<h:panelGrid columns="2" cellpadding="10">
+							<h:outputText value="Name" />
+							<h:inputText value="#{videoController.createVideo.name}" />
+							<h:outputText value="Genre" />
+
+							<p:selectOneMenu id="genres"
+								value="#{videoController.createVideo.genreId}"
+								style="width:150px">
+
+								<f:selectItem itemLabel="Select Genre" itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems value="#{genreController.allGenreAsSelectItems}" />
+							</p:selectOneMenu>
+
+							<h:outputText value="Minutes" />
+							<h:inputText value="#{videoController.createVideo.minutes}" />
+							<h:outputText value="Actor" />
+
+							<p:selectOneMenu id="actors"
+								value="#{videoController.createVideo.actorsId}"
+								style="width:150px">
+
+								<f:selectItem itemLabel="Select Actor" itemValue=""
+									noSelectionOption="true" />
+								<f:selectItems value="#{actorController.allActorsSelectItem}" />
+							</p:selectOneMenu>
+
+
+
+							<h:outputText value="Release Date" />
+							<p:calendar id="popup"
+								value="#{videoController.createVideo.releaseDate}" />
+
+
+
+
+						</h:panelGrid>
+
+						<p:commandButton value="save" oncomplete="PF('videoModal').hide()"
+							actionListener="#{videoController.save}" update="videoTable" />
+
+
 
 					</p:outputPanel>
 				</p:dialog>
