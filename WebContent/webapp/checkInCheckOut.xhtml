@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:body>
+	<ui:composition template="template/common/commonLayout.xhtml">
+
+
+		<ui:define name="content">
+<h:form id="myForm">
+			<p:dataTable id="customerTable" var="customer"
+				value="#{customerController.customers}" style="margin-bottom:40px"
+				widgetVar="customersTable" editable="true" editMode="cell">
+
+				<p:column headerText="First Name" sortBy="#{customer.firstName}"
+					filterBy="#{customer.firstName}">
+					<h:outputText value="#{customer.firstName}" />
+				</p:column>
+				<p:column headerText="Id Number" sortBy="#{customer.idNumber}"
+					filterBy="#{customer.idNumber}">
+					<h:outputText value="#{customer.idNumber}" />
+				</p:column>
+
+				<p:column>
+					<p:commandButton
+						oncomplete="PF('checkIn').show()" 
+						value="Check Video In">
+						<f:setPropertyActionListener value="#{customer}"
+							target="#{movieCheckoutController.selectedCustomer}" />
+					</p:commandButton>
+				</p:column>
+				
+				<p:column >
+					<p:commandButton 
+						oncomplete="PF('checkIn').show()" 
+						 value="Check Video Out">
+						<f:setPropertyActionListener value="#{customer}"
+							target="#{movieCheckoutController.selectedCustomer}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+			
+			
+			 <p:dialog id="videosCheckedOut" header="Video Info" widgetVar="checkIn" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel style="text-align:center;">
+            <p:dataTable  var="video" value="#{movieCheckoutController.checkedOutVideos}" style="margin-bottom:40px">
+        <f:facet name="header">
+            Videos
+        </f:facet>
+        
+ 
+        <p:column headerText="Name" sortBy="#{video.name}" filterBy="#{video.name}">>
+            <h:outputText value="#{video.name}" />
+        </p:column>
+        
+    
+ 
+       
+    </p:dataTable>
+            </p:outputPanel>
+            </p:dialog>
+            
+
+
+</h:form>.
+		</ui:define>
+		
+	</ui:composition>
+</h:body>
+</html>
